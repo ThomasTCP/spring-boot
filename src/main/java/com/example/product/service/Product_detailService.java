@@ -1,14 +1,14 @@
 package com.example.product.service;
 
-import com.example.product.model.Product_detail;
-import com.example.product.repository.ProductDetailRepository;
+import com.example.product.entity.Product_detail;
+import com.example.product.repository.Product_detailRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class Product_detailService {
-    ProductDetailRepository productDetailRepository;
+    Product_detailRepository productDetailRepository;
 
     public void addProduct_(Product_detail input){
         productDetailRepository.save(input);

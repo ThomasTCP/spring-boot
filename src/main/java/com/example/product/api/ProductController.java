@@ -1,6 +1,6 @@
 package com.example.product.api;
 
-import com.example.product.model.Product;
+import com.example.product.dto.ProductDto;
 import com.example.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,22 +19,22 @@ public class ProductController {
     }
 
     @PostMapping
-    public void createProduct(@RequestBody Product input){
+    public void createProduct(@RequestBody ProductDto input){
         productService.addProduct(input);
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<Product> readProductById(@PathVariable long id){
+    public Optional<ProductDto> readProductById(@PathVariable long id){
         return productService.getProductById(id);
     }
 
-    @GetMapping
-    public List<Product> readAllProducts(){
-        return productService.getAllProducts();
-    }
+//    @GetMapping
+//    public List<ProductDto> readAllProducts(){
+//        return productService.getAllProducts();
+//    }
 
     @PutMapping(path = "/{id}")
-    public void updateProduct(@PathVariable long id, @RequestBody Product product){
+    public void updateProduct(@PathVariable long id, @RequestBody ProductDto product){
         productService.updateProduct(id,product);
     }
 

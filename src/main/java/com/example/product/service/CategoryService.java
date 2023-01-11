@@ -1,9 +1,11 @@
 package com.example.product.service;
 
-import com.example.product.model.Category;
+import com.example.product.dto.CategoryDto;
+import com.example.product.entity.Category;
 import com.example.product.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,19 +17,36 @@ public class CategoryService {
 
     CategoryRepository categoryRepository;
 
-    public void addCategory(Category input){
-        categoryRepository.save(input);
+    public void addCategory(CategoryDto input){
+        Category category = new Category();
+        category.setName(input.getName());
+        categoryRepository.save(category);
     }
 
-    public Optional<Category> getCategoryById(long id){
-        return categoryRepository.findById(id);
+    public Optional<CategoryDto> getCategoryById(long id){
+        Category category = categoryRepository.findById(id).get();
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.loadFromEntity(category);
+        return Optional.of(categoryDto);
     }
 
-    public List<Category> getAllCategories(){
-        return categoryRepository.findAll();
+    public Optional<Category> getCategoryById2(long id){
+        Category category = categoryRepository.findById(id).get();
+        return Optional.of(category);
     }
 
-    public void updateCategory(long id, Category category){
+    public List<CategoryDto> getAllCategories(){
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
+        List<Category> categories = categoryRepository.findAll();
+        for(Category c : categories){
+            CategoryDto categoryDto = new CategoryDto();
+            categoryDto.loadFromEntity(c);
+            categoryDtoList.add(categoryDto);
+        }
+        return categoryDtoList;
+    }
+
+    public void updateCategory(long id, CategoryDto category){
         Category category1 = categoryRepository.findById(id).get();
         category1.setName(category.getName());
         categoryRepository.save(category1);
@@ -36,4 +55,5 @@ public class CategoryService {
     public void deleteCategory(long id){
         categoryRepository.deleteById(id);
     }
+
 }

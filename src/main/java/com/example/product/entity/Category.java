@@ -1,4 +1,4 @@
-package com.example.product.model;
+package com.example.product.entity;
 
 import jakarta.persistence.*;
 
@@ -11,8 +11,7 @@ public class Category {
     @Column(name = "name", nullable = false)
     private String name;
 
-    public Category(long id, String name) {
-        this.id = id;
+    public Category(String name) {
         this.name = name;
     }
 
@@ -21,10 +20,6 @@ public class Category {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
