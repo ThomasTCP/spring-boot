@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 @NoArgsConstructor
 
-public class Ultilities {
+public class Utilities {
     public static String convertDateFormat(java.sql.Date date){
         SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
         return fm.format(date);
