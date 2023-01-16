@@ -1,19 +1,20 @@
 package com.example.product.dto;
 
-import com.example.product.service.Ultilities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProductDto {
+@ToString
+public class ProductResponse {
     private String name;
-    private Long category;
     private String price;
     private Integer quantity;
-    private String time_create;
+    private String date;
+    private Long category_id;
     private String brand;
     private String description;
 }

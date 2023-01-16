@@ -1,6 +1,7 @@
 package com.example.product.api;
 
 import com.example.product.dto.CategoryDto;
+import com.example.product.entity.Category;
 import com.example.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,8 @@ import java.util.Optional;
 @RequestMapping("api/category")
 @RestController
 public class CategoryController {
-    private CategoryService categoryService;
-
     @Autowired
-    public CategoryController(CategoryService categoryService){
-        this.categoryService = categoryService;
-    }
+    private CategoryService categoryService;
 
     @PostMapping
     public void createCategory(@RequestBody CategoryDto input){
@@ -24,7 +21,7 @@ public class CategoryController {
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<CategoryDto> readCategoryById(@PathVariable("id") long id){
+    public Optional<Category> readCategoryById(@PathVariable("id") Long id){
         return categoryService.getCategoryById(id);
     }
 

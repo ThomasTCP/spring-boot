@@ -3,6 +3,8 @@ package com.example.product.service;
 import com.example.product.dto.CategoryDto;
 import com.example.product.entity.Category;
 import com.example.product.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,12 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@EnableJpaRepositories(basePackages = "com.example.product.repository")
 public class CategoryService {
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
-
-    CategoryRepository categoryRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public void addCategory(CategoryDto input){
         Category category = new Category();
@@ -23,14 +23,14 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public Optional<CategoryDto> getCategoryById(long id){
+    public Optional<CategoryDto> getCategoryDtoById(long id){
         Category category = categoryRepository.findById(id).get();
         CategoryDto categoryDto = new CategoryDto();
         categoryDto.loadFromEntity(category);
         return Optional.of(categoryDto);
     }
 
-    public Optional<Category> getCategoryById2(long id){
+    public Optional<Category> getCategoryById(Long id){
         Category category = categoryRepository.findById(id).get();
         return Optional.of(category);
     }
