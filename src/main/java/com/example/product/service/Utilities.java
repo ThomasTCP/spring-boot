@@ -45,4 +45,8 @@ public class Utilities {
         }
         return Integer.parseInt(sb.toString());
     }
+
+    public static java.sql.Date getCurrentDate(){
+        return new Date(System.currentTimeMillis());
+    }
 }
