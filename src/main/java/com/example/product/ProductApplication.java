@@ -12,8 +12,4 @@ public class ProductApplication {
 		SpringApplication.run(ProductApplication.class, args);
 
 	}
-
-//	public void jsdjas(ProductResponse productResponse){
-//		System.out.println(productResponse);
-//	}
 }

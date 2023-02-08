@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.sql.Date;
 
 @Entity
@@ -32,6 +31,4 @@ public class Product {
     @OneToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
-
 }

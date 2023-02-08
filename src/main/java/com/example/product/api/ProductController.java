@@ -1,10 +1,7 @@
 package com.example.product.api;
 
-import com.example.product.ProductApplication;
 import com.example.product.dto.ProductDto;
 import com.example.product.dto.ProductResponse;
-import com.example.product.entity.Product;
-import com.example.product.entity.ProductDetail;
 import com.example.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RequestMapping("api/product")
+@RequestMapping("api/v1/product")
 @RestController
 public class ProductController {
     @Autowired
@@ -21,8 +18,6 @@ public class ProductController {
     @PostMapping
     public void createProduct(@RequestBody ProductResponse productResponse){
         productService.addProduct(productResponse);
-//        ProductApplication productApplication = new ProductApplication();
-//        productApplication.jsdjas(productResponse);
     }
 
     @GetMapping(path = "/{id}")
