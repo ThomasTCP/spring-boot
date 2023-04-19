@@ -8,10 +8,13 @@ import com.example.product.repository.ProductRepository;
 import com.example.product.repository.ProductDetailRepository;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -105,5 +108,17 @@ public class ProductService {
         productDetail.setDescription(productResponse.getDescription());
         productDetail.setProduct(product);
         return productDetail;
+    }
+
+    public ResponseEntity<?> partialUpdateName(String name, Long id){
+        Optional<Product> optional = productRepository.findById(id);
+        if (optional.isPresent()) {
+            Product product = optional.get();
+            product.setName(name);
+            return new ResponseEntity<>(productRepository.save(product), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 }
